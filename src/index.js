@@ -1,16 +1,16 @@
 import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
-import evilShip from './assets/evil-ship.png';
-import crossBullet from './assets/cross-bullet.png';
+import playerShip from './assets/player-ship.png';
+import playerBullet from './assets/player-bullet.png';
 import starfield from './assets/starfield.png';
 
 const state = {};
 
 
 const preload = () => {
-  state.game.load.image('evilShip', evilShip);
-  state.game.load.image('crossBullet', crossBullet);
+  state.game.load.image('playerShip', playerShip);
+  state.game.load.image('playerBullet', playerBullet);
   state.game.load.image('starfield', starfield);
 };
 
@@ -18,19 +18,18 @@ const create = () => {
     const starfield = state.game.add.tileSprite(0, 0, 800, 600, 'starfield');
     state.game.physics.setBoundsToWorld();
 
-    const ship = state.game.add.sprite(400, 300, 'evilShip');
-    ship.scale.setTo(0.5, 0.5);
+    const ship = state.game.add.sprite(400, 300, 'playerShip');
     state.game.physics.arcade.enable(ship);
     ship.physicsBodyType = Phaser.Physics.ARCADE;
     ship.body.collideWorldBounds=true;
 
 
-    const weapon = state.game.add.weapon(30, 'crossBullet');
+    const weapon = state.game.add.weapon(30, 'playerBullet');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-    weapon.bulletSpeed = 400;
+    weapon.bulletSpeed = 300;
     weapon.fireRate = 60;
-    weapon.bulletAngleVariance = 10;
-    weapon.trackSprite(ship, 45, 30);
+    weapon.bulletAngleVariance = 2;
+    weapon.trackSprite(ship, 29, 10);
 
     const cursors = state.game.input.keyboard.createCursorKeys();
     const fireButton = state.game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
