@@ -1,0 +1,54 @@
+{
+  "name": "starfighter-phaser",
+  "version": "1.0.0",
+  "description": "SHMUP using phaser, webpack and ES6",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint './{src/**,test/**,.}/*.js'",
+    "test": "./node_modules/.bin/cross-env BABEL_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/ava --require babel-core/register './test/**/*.spec.js'",
+    "clean": "./node_modules/.bin/rimraf ./dist",
+    "build:webpack": "./node_modules/.bin/webpack",
+    "build": "npm run clean && npm run build:webpack",
+    "start": "./node_modules/.bin/webpack",
+    "prepublish": "npm run lint && npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claudiorodriguez/starfighter-phaser.git"
+  },
+  "keywords": [
+    "javascript",
+    "phaser",
+    "game",
+    "shmup"
+  ],
+  "author": "Claudio Rodriguez <cjrodr@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/claudiorodriguez/starfighter-phaser/issues"
+  },
+  "homepage": "https://github.com/claudiorodriguez/starfighter-phaser#readme",
+  "dependencies": {
+    "phaser": "^2.6.2"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.0",
+    "babel-eslint": "^7.1.0",
+    "babel-loader": "^6.2.7",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "browser-sync": "^2.17.5",
+    "browser-sync-webpack-plugin": "^1.1.3",
+    "copyfiles": "^1.0.0",
+    "coveralls": "^2.11.14",
+    "cross-env": "^3.1.3",
+    "eslint": "^3.8.1",
+    "expose-loader": "^0.7.1",
+    "file-loader": "^0.9.0",
+    "nyc": "^8.3.2",
+    "rimraf": "^2.5.4",
+    "webpack": "^1.13.3"
+  }
+}

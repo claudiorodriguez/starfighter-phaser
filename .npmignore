@@ -1,0 +1,5 @@
+.babelrc
+.eslintrc
+test
+.nyc_output
+coverage
