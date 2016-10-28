@@ -3,6 +3,7 @@ import 'p2';
 import Phaser from 'phaser';
 import evilShip from './assets/evil-ship.png';
 import crossBullet from './assets/cross-bullet.png';
+import starfield from './assets/starfield.png';
 
 const state = {};
 
@@ -10,9 +11,12 @@ const state = {};
 const preload = () => {
   state.game.load.image('evilShip', evilShip);
   state.game.load.image('crossBullet', crossBullet);
+  state.game.load.image('starfield', starfield);
 };
 
 const create = () => {
+    const starfield = state.game.add.tileSprite(0, 0, 800, 600, 'starfield');
+
     const ship = state.game.add.sprite(400, 300, 'evilShip');
 
     state.game.physics.arcade.enable(ship);
@@ -29,6 +33,7 @@ const create = () => {
 
     state.ship = ship;
     state.weapon = weapon;
+    state.starfield = starfield;
     state.controls = {
       cursors,
       fireButton
@@ -38,6 +43,7 @@ const create = () => {
 const update = () => {
   state.ship.body.velocity.x = 0;
   state.ship.body.velocity.y = 0;
+  state.starfield.tilePosition.y += 2;
 
   if (state.controls.cursors.left.isDown)
   {
