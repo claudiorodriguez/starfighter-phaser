@@ -16,17 +16,21 @@ const preload = () => {
 
 const create = () => {
     const starfield = state.game.add.tileSprite(0, 0, 800, 600, 'starfield');
+    state.game.physics.setBoundsToWorld();
 
     const ship = state.game.add.sprite(400, 300, 'evilShip');
-
+    ship.scale.setTo(0.5, 0.5);
     state.game.physics.arcade.enable(ship);
+    ship.physicsBodyType = Phaser.Physics.ARCADE;
+    ship.body.collideWorldBounds=true;
+
 
     const weapon = state.game.add.weapon(30, 'crossBullet');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
     weapon.bulletSpeed = 400;
     weapon.fireRate = 60;
     weapon.bulletAngleVariance = 10;
-    weapon.trackSprite(ship, 91, 60);
+    weapon.trackSprite(ship, 45, 30);
 
     const cursors = state.game.input.keyboard.createCursorKeys();
     const fireButton = state.game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
